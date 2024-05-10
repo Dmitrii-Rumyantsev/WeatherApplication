@@ -1,0 +1,133 @@
+{
+  "name": "splash",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "ZlTaWlZTI6x0ZAJhjhmjph",
+    "node": "303:3",
+    "version": "5735231327",
+    "component-id": "171f039136397eaccf005a562313b650d35cf7b1"
+  },
+  "default": "Splash",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "text",
+        "id": "A minimal weather app"
+      },
+      {
+        "type": "text",
+        "id": "Weather"
+      }
+    ],
+    "modes": {
+      "Splash": {
+        "rules": [
+          {
+            "id": "top_level",
+            "tap-handler": "$on Splash tapped",
+            "is-structured": false,
+            "children": [
+              "A minimal weather app",
+              "Weather"
+            ],
+            "background-color": "$backgournd_color"
+          },
+          {
+            "id": "A minimal weather app",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 144.00000000000006
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 771.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$produced_by",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 10.0,
+            "line-height": 1.149000072479248,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Weather",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 149.00000000000006
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 391.99999999999994
+              }
+            },
+            "text-content": "$Weather text content",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 24.0,
+            "line-height": 1.1490000089009602,
+            "typeface": "Ubuntu Condensed"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "backgournd_color": {
+      "data-type": "color",
+      "required": false,
+      "description": ""
+    },
+    "on Splash tapped": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "produced_by": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "Weather text content": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "Splash",
+      "size": {
+        "width": 375.0,
+        "height": 812.0
+      },
+      "parameters": {
+        "backgournd_color": {
+          "alpha": 1.0,
+          "hue": 0.0,
+          "saturation": 0.0,
+          "value": 1.0
+        },
+        "produced_by": "A minimal weather app",
+        "Weather text content": "Weather"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

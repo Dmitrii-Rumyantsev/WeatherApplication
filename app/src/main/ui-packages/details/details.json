@@ -1,0 +1,781 @@
+{
+  "name": "details",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "ZlTaWlZTI6x0ZAJhjhmjph",
+    "node": "311:427",
+    "version": "5736362593",
+    "component-id": "2407e6407acd4b5afbae8a19a5eff2ed136cbf45"
+  },
+  "default": "Details",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "Location"
+      },
+      {
+        "type": "vector",
+        "id": "Mapping"
+      },
+      {
+        "type": "vector",
+        "id": "Settings"
+      },
+      {
+        "type": "text",
+        "id": "Details"
+      },
+      {
+        "type": "group",
+        "id": "Precipitation"
+      },
+      {
+        "type": "group",
+        "id": "SE Wind"
+      },
+      {
+        "type": "group",
+        "id": "Humidity"
+      },
+      {
+        "type": "group",
+        "id": "Visibility"
+      },
+      {
+        "type": "group",
+        "id": "UV"
+      },
+      {
+        "type": "group",
+        "id": "Pressure"
+      },
+      {
+        "type": "text",
+        "id": "Humidity1"
+      },
+      {
+        "type": "text",
+        "id": "Mumbai"
+      },
+      {
+        "type": "text",
+        "id": "Current Location"
+      },
+      {
+        "type": "text",
+        "id": "Precipitation1"
+      },
+      {
+        "type": "text",
+        "id": "0.0 mm"
+      },
+      {
+        "type": "text",
+        "id": "SE Wind1"
+      },
+      {
+        "type": "text",
+        "id": "10.23 km/h"
+      },
+      {
+        "type": "text",
+        "id": "Humidity2"
+      },
+      {
+        "type": "text",
+        "id": "Visibility1"
+      },
+      {
+        "type": "text",
+        "id": "14.83 km"
+      },
+      {
+        "type": "text",
+        "id": "UV1"
+      },
+      {
+        "type": "text",
+        "id": "Lowest"
+      },
+      {
+        "type": "text",
+        "id": "Pressure1"
+      },
+      {
+        "type": "text",
+        "id": "1012 hPa"
+      }
+    ],
+    "modes": {
+      "Details": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": false,
+            "children": [
+              "Location",
+              "Mapping",
+              "Settings",
+              "Details",
+              "Precipitation",
+              "SE Wind",
+              "Humidity",
+              "Visibility",
+              "UV",
+              "Pressure",
+              "Humidity1"
+            ],
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            }
+          },
+          {
+            "id": "Location",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 70.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 62.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 37.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Mumbai",
+              "Current Location"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Mapping",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 282.875
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 70.75
+              }
+            },
+            "tap-handler": "$onClickMapping",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 19.5
+              }
+            },
+            "vector-content": "mapping.svg"
+          },
+          {
+            "id": "Settings",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 323.875
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 69.875
+              }
+            },
+            "tap-handler": "$onClickSettings",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              }
+            },
+            "vector-content": "settings.svg"
+          },
+          {
+            "id": "Details",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 157.0
+              }
+            },
+            "text-content": "$details",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 24.0,
+            "line-height": 1.1490000089009602,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Precipitation",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 215.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 58.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 40.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Precipitation1",
+              "0.0 mm"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "SE Wind",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 275.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 73.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 40.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "SE Wind1",
+              "10.23 km/h"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Humidity",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 335.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 42.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 14.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Humidity2"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Visibility",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 395.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 59.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 40.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Visibility1",
+              "14.83 km"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "UV",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 455.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 46.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 40.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "UV1",
+              "Lowest"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Pressure",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 515.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 60.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 40.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Pressure1",
+              "1012 hPa"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Humidity1",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 361.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 62.0
+              },
+              "height-constraints": {
+                "sizing-mode": "shrink"
+              }
+            },
+            "text-content": "$humidityScore",
+            "overflow": "visible",
+            "max-lines": -1,
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Mumbai",
+            "text-content": "$locationNow",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Current Location",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 26.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$currentLocation",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 10.0,
+            "line-height": 1.149000072479248,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Precipitation1",
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$precipitation",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 12.0,
+            "line-height": 1.1490000089009602,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "0.0 mm",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 19.0
+              }
+            },
+            "text-content": "$precipitationScore",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "SE Wind1",
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$seWind",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 12.0,
+            "line-height": 1.1490000089009602,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "10.23 km/h",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 19.0
+              }
+            },
+            "text-content": "$seWindScore",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Humidity2",
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$humidity",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 12.0,
+            "line-height": 1.1490000089009602,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Visibility1",
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$visibility",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 12.0,
+            "line-height": 1.1490000089009602,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "14.83 km",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 19.0
+              }
+            },
+            "text-content": "$visibilityScore",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "UV1",
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$uv",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 12.0,
+            "line-height": 1.1490000089009602,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Lowest",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 19.0
+              }
+            },
+            "text-content": "$uvScore",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Pressure1",
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$pressure",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 12.0,
+            "line-height": 1.1490000089009602,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "1012 hPa",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 19.0
+              }
+            },
+            "text-content": "$pressureScore",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onClickMapping": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onClickSettings": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "details": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "humidityScore": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "locationNow": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "currentLocation": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "precipitation": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "precipitationScore": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "seWind": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "seWindScore": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "humidity": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "visibility": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "visibilityScore": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "uv": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "uvScore": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "pressure": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "pressureScore": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "Details",
+      "size": {
+        "width": 375.0,
+        "height": 812.0
+      },
+      "parameters": {
+        "details": "Details",
+        "humidityScore": "Humidity",
+        "locationNow": "Mumbai",
+        "currentLocation": "Current Location",
+        "precipitation": "Precipitation",
+        "precipitationScore": "0.0 mm",
+        "seWind": "SE Wind",
+        "seWindScore": "10.23 km/h",
+        "humidity": "Humidity",
+        "visibility": "Visibility",
+        "visibilityScore": "14.83 km",
+        "uv": "UV",
+        "uvScore": "Lowest",
+        "pressure": "Pressure",
+        "pressureScore": "1012 hPa"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

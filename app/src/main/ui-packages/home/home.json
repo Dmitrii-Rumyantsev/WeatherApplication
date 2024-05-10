@@ -1,0 +1,873 @@
+{
+  "name": "home",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "ZlTaWlZTI6x0ZAJhjhmjph",
+    "node": "306:2",
+    "version": "5736178904",
+    "component-id": "68ed4f4c0928205f0ebff122953d07780564d6b2"
+  },
+  "default": "Home",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "Location"
+      },
+      {
+        "type": "group",
+        "id": "Date and Temperature"
+      },
+      {
+        "type": "group",
+        "id": "Weather"
+      },
+      {
+        "type": "group",
+        "id": "Sunrise and Sunset"
+      },
+      {
+        "type": "vector",
+        "id": "Settings"
+      },
+      {
+        "type": "text",
+        "id": "in sync"
+      },
+      {
+        "type": "vector",
+        "id": "Mapping"
+      },
+      {
+        "type": "text",
+        "id": "Moscow"
+      },
+      {
+        "type": "text",
+        "id": "Current Location"
+      },
+      {
+        "type": "text",
+        "id": "22°C"
+      },
+      {
+        "type": "text",
+        "id": "Friday, 25 December 2020"
+      },
+      {
+        "type": "group",
+        "id": "Lowest Temperature"
+      },
+      {
+        "type": "group",
+        "id": "Highest Temperature"
+      },
+      {
+        "type": "vector",
+        "id": "DownArray"
+      },
+      {
+        "type": "text",
+        "id": "16°C"
+      },
+      {
+        "type": "vector",
+        "id": "UpArray"
+      },
+      {
+        "type": "text",
+        "id": "26°C"
+      },
+      {
+        "type": "text",
+        "id": "Light Drizzle"
+      },
+      {
+        "type": "vector",
+        "id": "TypeWeather"
+      },
+      {
+        "type": "group",
+        "id": "Sunrise"
+      },
+      {
+        "type": "group",
+        "id": "Sunset"
+      },
+      {
+        "type": "vector",
+        "id": "SunriseSVG"
+      },
+      {
+        "type": "text",
+        "id": "09:18 AM"
+      },
+      {
+        "type": "vector",
+        "id": "SunsetSVG"
+      },
+      {
+        "type": "text",
+        "id": "06:32 PM"
+      }
+    ],
+    "modes": {
+      "Home": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": false,
+            "children": [
+              "Location",
+              "Date and Temperature",
+              "Weather",
+              "Sunrise and Sunset",
+              "Settings",
+              "in sync",
+              "Mapping"
+            ],
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            }
+          },
+          {
+            "id": "Location",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 70.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 62.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 37.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Moscow",
+              "Current Location"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Date and Temperature",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 103.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 198.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 169.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 192.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "22°C",
+              "Friday, 25 December 2020",
+              "Lowest Temperature",
+              "Highest Temperature"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Weather",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 124.30191040039062
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 440.3348388671875
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 127.33343505859375
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 168.6652069091797
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Light Drizzle",
+              "TypeWeather"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Sunrise and Sunset",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 80.875
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 659.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 214.125
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Sunrise",
+              "Sunset"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Settings",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 323.875
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 69.875
+              }
+            },
+            "tap-handler": "$onClickSettings",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              }
+            },
+            "vector-content": "settings.svg"
+          },
+          {
+            "id": "in sync",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 175.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 157.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$inSync",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 10.0,
+            "line-height": 1.149000072479248,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Mapping",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 282.875
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 70.75
+              }
+            },
+            "tap-handler": "$onClickMapping",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 19.5
+              }
+            },
+            "vector-content": "mapping.svg"
+          },
+          {
+            "id": "Moscow",
+            "text-content": "$locationNow",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Current Location",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 26.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$currentLocation",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 10.0,
+            "line-height": 1.149000072479248,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "22°C",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 41.0
+              }
+            },
+            "text-content": "$tempNow",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 96.0,
+            "line-height": 1.1490000089009602,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Friday, 25 December 2020",
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$dateNow",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Lowest Temperature",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 29.905075073242188
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 171.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 45.09492111206055
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "DownArray",
+              "16°C"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Highest Temperature",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 100.90542602539062
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 171.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 45.09457778930664
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "UpArray",
+              "26°C"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "DownArray",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 3.28125
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 9.18950080871582
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 14.438626289367676
+              }
+            },
+            "vector-content": "down_array.svg"
+          },
+          {
+            "id": "16°C",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 15.094924926757812
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 0.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$tempMin",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "UpArray",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": -0.000030517578125
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 3.280029296875
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 9.18950080871582
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 14.438674926757812
+              }
+            },
+            "vector-content": "up_array.svg"
+          },
+          {
+            "id": "26°C",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 15.094573974609375
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 0.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$tempMax",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Light Drizzle",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 21.698074340820312
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 147.6651611328125
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$typeWeather",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "TypeWeather",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0000152587890625
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 0.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 127.33344268798828
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 127.33186340332031
+              }
+            },
+            "vector-content": "type_weather.svg"
+          },
+          {
+            "id": "Sunrise",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 92.125
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "SunriseSVG",
+              "09:18 AM"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Sunset",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 122.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 0.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 92.125
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "SunsetSVG",
+              "06:32 PM"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "SunriseSVG",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 1.007568359375
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 19.242446899414062
+              }
+            },
+            "vector-content": "sunrise_svg.svg"
+          },
+          {
+            "id": "09:18 AM",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 31.125
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 0.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$sunriseTime",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "SunsetSVG",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 0.75
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 19.5
+              }
+            },
+            "vector-content": "sunset_svg.svg"
+          },
+          {
+            "id": "06:32 PM",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 31.125
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 0.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$sunsetTime",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onClickSettings": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "inSync": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "onClickMapping": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "locationNow": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "currentLocation": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "tempNow": {
+      "data-type": "annotated-text-content",
+      "required": false,
+      "description": ""
+    },
+    "dateNow": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "tempMin": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "tempMax": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "typeWeather": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "sunriseTime": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "sunsetTime": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "Home",
+      "size": {
+        "width": 375.0,
+        "height": 812.0
+      },
+      "parameters": {
+        "inSync": "in sync",
+        "locationNow": "Moscow",
+        "currentLocation": "Current Location",
+        "tempNow": {
+          "text": "22°C",
+          "annotated-text-span-list": [
+            {
+              "span-start": 0,
+              "span-length": 2,
+              "annotated-text-style": {
+                "color": {
+                  "alpha": 1.0,
+                  "hue": 0.0,
+                  "saturation": 0.0,
+                  "value": 0.0
+                }
+              }
+            },
+            {
+              "span-start": 2,
+              "span-length": 2,
+              "annotated-text-style": {
+                "text-size": 36.0,
+                "color": {
+                  "alpha": 1.0,
+                  "hue": 0.0,
+                  "saturation": 0.0,
+                  "value": 0.0
+                }
+              }
+            }
+          ]
+        },
+        "dateNow": "Friday, 25 December 2020",
+        "tempMin": "16°C",
+        "tempMax": "26°C",
+        "typeWeather": "Light Drizzle",
+        "sunriseTime": "09:18 AM",
+        "sunsetTime": "06:32 PM"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

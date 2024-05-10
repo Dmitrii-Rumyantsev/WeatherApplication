@@ -1,0 +1,220 @@
+{
+  "name": "locations",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "ZlTaWlZTI6x0ZAJhjhmjph",
+    "node": "327:1644",
+    "version": "5737271880",
+    "component-id": "7e59119f022a3b9ff774c31f5c590f2b50a7c991"
+  },
+  "default": "Locations",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "Back"
+      },
+      {
+        "type": "vector",
+        "id": "Add Location"
+      },
+      {
+        "type": "group",
+        "id": "Back Icon"
+      },
+      {
+        "type": "text",
+        "id": "Select City"
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      }
+    ],
+    "modes": {
+      "Locations": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": false,
+            "children": [
+              "Back",
+              "Add Location"
+            ],
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            }
+          },
+          {
+            "id": "Back",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 70.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 95.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Back Icon",
+              "Select City"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Add Location",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 327.375
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 73.375
+              }
+            },
+            "tap-handler": "$onClickAdd",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 14.25
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 14.25
+              }
+            },
+            "vector-content": "add_location.svg"
+          },
+          {
+            "id": "Back Icon",
+            "tap-handler": "$onClickBack",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Vector"
+            ]
+          },
+          {
+            "id": "Select City",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 26.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 0.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$selectCity",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Vector",
+            "margin": {
+              "left": 7.875,
+              "top": 5.25,
+              "right": 7.875,
+              "bottom": 5.25
+            },
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": -1.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": -1.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "vector.svg"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onClickAdd": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onClickBack": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "selectCity": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "Locations",
+      "size": {
+        "width": 375.0,
+        "height": 812.0
+      },
+      "parameters": {
+        "selectCity": "Select City"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

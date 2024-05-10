@@ -1,0 +1,315 @@
+{
+  "name": "forecast",
+  "version": 33,
+  "source-key": {
+    "type": "figma",
+    "file": "ZlTaWlZTI6x0ZAJhjhmjph",
+    "node": "323:1609",
+    "version": "5737040101",
+    "component-id": "95e8f07058badc9016923ceb5b2a92f26896d7c3"
+  },
+  "default": "Forecast",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "Location"
+      },
+      {
+        "type": "vector",
+        "id": "Mapping"
+      },
+      {
+        "type": "vector",
+        "id": "Settings"
+      },
+      {
+        "type": "text",
+        "id": "Forecast"
+      },
+      {
+        "type": "text",
+        "id": "Hourly Forecast"
+      },
+      {
+        "type": "text",
+        "id": "Daily Forecast"
+      },
+      {
+        "type": "text",
+        "id": "Mumbai"
+      },
+      {
+        "type": "text",
+        "id": "Current Location"
+      }
+    ],
+    "modes": {
+      "Forecast": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": false,
+            "children": [
+              "Location",
+              "Mapping",
+              "Settings",
+              "Forecast",
+              "Hourly Forecast",
+              "Daily Forecast"
+            ],
+            "background-color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 1.0
+            }
+          },
+          {
+            "id": "Location",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 70.0
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 62.0
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 37.0
+              }
+            },
+            "is-structured": false,
+            "children": [
+              "Mumbai",
+              "Current Location"
+            ],
+            "clip-content": false
+          },
+          {
+            "id": "Mapping",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 282.875
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 70.75
+              }
+            },
+            "tap-handler": "$onClickMapping",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 19.5
+              }
+            },
+            "vector-content": "mapping.svg"
+          },
+          {
+            "id": "Settings",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 323.875
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 69.875
+              }
+            },
+            "tap-handler": "$onClickSettings",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": 21.25
+              }
+            },
+            "vector-content": "settings.svg"
+          },
+          {
+            "id": "Forecast",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 157.0
+              }
+            },
+            "text-content": "$forecast",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 24.0,
+            "line-height": 1.1490000089009602,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Hourly Forecast",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 235.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$hourlyForecast",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Daily Forecast",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 30.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 374.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$dailyForecast",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Mumbai",
+            "text-content": "$locationNow",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 18.0,
+            "line-height": 1.1490000618828669,
+            "typeface": "Ubuntu Condensed"
+          },
+          {
+            "id": "Current Location",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": 0.0
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": 26.0
+              }
+            },
+            "color": {
+              "alpha": 1.0,
+              "hue": 0.0,
+              "saturation": 0.0,
+              "value": 0.3764705882352941
+            },
+            "text-content": "$currentLocation",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": 10.0,
+            "line-height": 1.149000072479248,
+            "typeface": "Ubuntu Condensed"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onClickMapping": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "onClickSettings": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "forecast": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "hourlyForecast": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "dailyForecast": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "locationNow": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "currentLocation": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "Forecast",
+      "size": {
+        "width": 375.0,
+        "height": 812.0
+      },
+      "parameters": {
+        "forecast": "Forecast",
+        "hourlyForecast": "Hourly Forecast",
+        "dailyForecast": "Daily Forecast",
+        "locationNow": "Mumbai",
+        "currentLocation": "Current Location"
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

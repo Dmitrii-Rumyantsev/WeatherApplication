@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Weather">Прогноз погоды</string>
+    <string name="currentLocation">Местоположение</string>
+    <string name="dateNow">Февраль, 25 Декабря 2020</string>
+    <string name="typeWeather">Легкий моросящий дождь</string>
+    <string name="sunriseTime">09:18</string>
+    <string name="sunsetTime">18:32</string>
+    <string name="inSync">сейчас</string>
+    <string name="locationNow">Москва</string>
+    <string name="details">Детали</string>
+    <string name="precipitation">Выпадение осадков</string>
+    <string name="seWind">Ветер</string>
+    <string name="humidity">Влажность</string>
+    <string name="visibility">Видимость</string>
+    <string name="uv">УФ-индекс</string>
+    <string name="pressure">Давление</string>
+    <string name="forecast">Прогноз</string>
+    <string name="hourlyForecast">Почасовой Прогноз</string>
+    <string name="dailyForecast">Ежедневный прогноз</string>
+    <string name="selectCity">Выбор города</string>
+</resources>

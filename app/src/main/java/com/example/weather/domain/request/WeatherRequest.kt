@@ -29,11 +29,10 @@ class WeatherRequest {
         private var LOCATION = "Moscow"
         private var INCLUDE = "include=days"
     }
-    suspend fun doKtorRequest():WeatherCity {
-        val client = HttpClient{
-            install(ContentNegotiation){
-                json()
-            }
-        }
+    suspend fun doKtorRequest(): WeatherCity {
+        val client = HttpClient()
+        val response = client.get("$BASE_URL$LOCATION?$GROUP&$INCLUDE&$KEY&$CONTENT_TYPE").body<String>()
+        Log.d("Info json", response)
+        return Json.decodeFromString<WeatherCity>(response)
     }
 }

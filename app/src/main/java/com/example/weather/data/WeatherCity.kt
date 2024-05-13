@@ -5,18 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class WeatherCity(
-    @SerialName("resolvedAddress")
+    @SerialName("address")
     val city: String,
-    val curentTime: String,
-    val datetime: String,
-    val sunrise: String,
-    val sunset: String,
-    val preciptype: String,
-    val precip: Double,
-    val tempmax: Double,
-    val tempmin: Double,
-    val temp: Double,
-    val humidity: Double,
-    val uvindex: Int,
-    val pressure: Int
+    @SerialName("currentConditions")
+    val currentConditions: CurrentConditions,
+    val days: List<Day>
 )

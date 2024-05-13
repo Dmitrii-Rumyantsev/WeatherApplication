@@ -23,16 +23,26 @@ class WeatherRequest {
     companion object{
         private val BASE_URL =
             "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
-        private val GROUP = "unitGroup=metric"
+        private var LOCATION = "Moscow/"
+        private val GROUP = "today?unitGroup=metric"
+        private var INCLUDE = "include=current"
         private val KEY = "key=ZH63FRCTTRJMN5X5285JXWY2G"
         private val CONTENT_TYPE = "contentType=json"
-        private var LOCATION = "Moscow"
-        private var INCLUDE = "include=days"
+    //https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/
+    // Moscow/
+    // today?unitGroup=metric
+    // &
+    // include=current
+    // &
+    // key=ZH63FRCTTRJMN5X5285JXWY2G
+    // &
+    // contentType=json
     }
     suspend fun doKtorRequest(): WeatherCity {
         val client = HttpClient()
-        val response = client.get("$BASE_URL$LOCATION?$GROUP&$INCLUDE&$KEY&$CONTENT_TYPE").body<String>()
+        val response = client.get("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Sochi/today?unitGroup=metric&include=current&key=ZH63FRCTTRJMN5X5285JXWY2G&contentType=json").body<String>()
         Log.d("Info json", response)
-        return Json.decodeFromString<WeatherCity>(response)
+        val weatherCity = Json {ignoreUnknownKeys = true}.decodeFromString<WeatherCity>(response)
+        return weatherCity
     }
 }

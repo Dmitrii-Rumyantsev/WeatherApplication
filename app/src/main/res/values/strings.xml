@@ -21,4 +21,9 @@
     <string name="hourlyForecast">Hourly Forecast</string>
     <string name="dailyForecast">Daily Forecast</string>
     <string name="selectCity">Select City</string>
+    <string name="precipitationScore">mm</string>
+    <string name="seWindScore">km/h</string>
+    <string name="humidityScore" translatable="false">%</string>
+    <string name="visibilityScore">km</string>
+    <string name="pressureScore">hPa</string>
 </resources>

@@ -19,4 +19,8 @@
     <string name="hourlyForecast">Почасовой Прогноз</string>
     <string name="dailyForecast">Ежедневный прогноз</string>
     <string name="selectCity">Выбор города</string>
+    <string name="precipitationScore">мм</string>
+    <string name="seWindScore">км/ч</string>
+    <string name="visibilityScore">км</string>
+    <string name="pressureScore">hPa</string>
 </resources>

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-parcelize")
     id("com.google.relay") version "0.3.12"
     kotlin("plugin.serialization") version "1.9.22"
 }
@@ -74,4 +75,5 @@ dependencies {
 
     // Ktor dependencies
     testImplementation("junit:junit:4.12")
+    debugImplementation(libs.ui.tooling)
 }

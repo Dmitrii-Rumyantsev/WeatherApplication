@@ -3,7 +3,9 @@ package com.example.weather.presentation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,9 +16,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -40,147 +45,156 @@ import com.example.weather.forecast.Mapping
 import com.example.weather.forecast.Mumbai
 import com.example.weather.forecast.Settings
 import com.example.weather.forecast.TopLevel
+import com.example.weather.ui.theme.WeatherTheme
+import com.google.relay.compose.RelayVector
+import com.google.relay.compose.tappable
 
 
 class ForecastActivity:ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent{
-            ForecastC()
+            WeatherTheme {
+                ForecastContent()
+            }
         }
-    }
-}
-
-@Composable
-fun ForecastC(
-    modifier: Modifier = Modifier,
-    forecast: String = stringResource(id = R.string.forecast),
-    hourlyForecast: String = stringResource(id = R.string.hourlyForecast),
-    dailyForecast: String = stringResource(id = R.string.dailyForecast),
-    locationNow: String = stringResource(id = R.string.locationNow),
-    currentLocation: String = stringResource(id = R.string.currentLocation),
-    onClickMapping: () -> Unit = {},
-    onClickSettings: () -> Unit = {}
-) {
-    TopLevel(modifier = modifier) {
-        Location(
-            modifier = Modifier.boxAlign(
-                alignment = Alignment.TopStart,
-                offset = DpOffset(
-                    x = 30.0.dp,
-                    y = 70.0.dp
-                )
-            )
-        ) {
-            Mumbai(locationNow = locationNow)
-            CurrentLocation(
-                currentLocation = currentLocation,
-                modifier = Modifier.boxAlign(
-                    alignment = Alignment.TopStart,
-                    offset = DpOffset(
-                        x = 0.0.dp,
-                        y = 26.0.dp
-                    )
-                )
-            )
-        }
-        Mapping(
-            onClickMapping = onClickMapping,
-            modifier = Modifier.boxAlign(
-                alignment = Alignment.TopStart,
-                offset = DpOffset(
-                    x = 282.875.dp,
-                    y = 70.75.dp
-                )
-            )
-        )
-        Settings(
-            onClickSettings = onClickSettings,
-            modifier = Modifier.boxAlign(
-                alignment = Alignment.TopStart,
-                offset = DpOffset(
-                    x = 323.875.dp,
-                    y = 69.875.dp
-                )
-            )
-        )
-        Forecast(
-            forecast = forecast,
-            modifier = Modifier.boxAlign(
-                alignment = Alignment.TopStart,
-                offset = DpOffset(
-                    x = 30.0.dp,
-                    y = 157.0.dp
-                )
-            )
-        )
-        HourlyForecast(
-            hourlyForecast = hourlyForecast,
-            modifier = Modifier.boxAlign(
-                alignment = Alignment.TopStart,
-                offset = DpOffset(
-                    x = 30.0.dp,
-                    y = 235.0.dp
-                )
-            )
-        )
-        HourlyLazyRow()
-        DailyForecast(
-            dailyForecast = dailyForecast,
-            modifier = Modifier.boxAlign(
-                alignment = Alignment.TopStart,
-                offset = DpOffset(
-                    x = 30.0.dp,
-                    y = 374.0.dp
-                )
-            )
-        )
-        DailyLazyRow()
     }
 }
 
 @Preview
 @Composable
-fun HourlyLazyRow(){
-    LazyRow(
-        modifier = Modifier
-            .fillMaxWidth()
-            .size(width = 315.dp, height = 48.dp) // Устанавливаем размер
-            .padding(end = 75.dp)
-            .offset(x = 30.dp, y = 276.dp) // Сдвигаем по X и Y
-    ){
-        items(400)
-
-        {
-            Text(
-                text = "Item $it",
-                fontSize = 20.sp, // Уменьшаем размер шрифта
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-            )
+fun ForecastContent(){
+    WeatherTheme {
+        Surface(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                HomeContentTop("Moscow")
+                Spacer(modifier = Modifier.height(50.dp))
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 30.dp)) {
+                    Text(
+                        text = stringResource(id = R.string.forecast),
+                        style = MaterialTheme.typography.bodyLarge)
+                }
+                Spacer(modifier = Modifier.height(50.dp))
+                ForecastHourly()
+            }
         }
     }
 }
 
 @Composable
-fun DailyLazyRow(){
-    LazyRow(
-        modifier = Modifier
-            .fillMaxWidth()
-            .size(width = 315.dp, height = 90.dp) // Устанавливаем размер
-            .padding(end = 75.dp)
-            .offset(x = 30.dp, y = 415.dp) // Сдвигаем по X и Y
-    ){
-        items(400)
+fun ForecastHourly(){
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(start = 30.dp)) {
+        Text(
+            text = stringResource(id = R.string.hourlyForecast),
+            style = MaterialTheme.typography.titleLarge,
+            fontSize = 18.sp
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        LazyRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(width = 315.dp, height = 48.dp) // Устанавливаем размер
+                .padding(end = 30.dp)
+        ) {
+            items(400)
 
-        {
-            Text(
-                text = "Itemss $it",
-                fontSize = 20.sp, // Уменьшаем размер шрифта
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-            )
+            {
+                Column(
+                    modifier = Modifier.width(28.dp)
+                ) {
+                    Text(
+                        text = "11:00",
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontSize = 12.sp
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+                    RelayVector(
+                        vector = painterResource(R.drawable.drizzle),
+                        modifier = Modifier
+                            .tappable(onTap = {})
+                            .requiredWidth(24.dp)
+                            .requiredHeight(24.dp)
+                    )
+                }
+                Spacer(modifier = Modifier.width(20.dp))
+            }
+        }
+        Spacer(modifier = Modifier.height(50.dp))
+
+        Text(
+            text = stringResource(id = R.string.dailyForecast),
+            style = MaterialTheme.typography.titleLarge,
+            fontSize = 18.sp
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        LazyRow(
+            modifier = Modifier
+                .fillMaxWidth()
+                .size(width = 315.dp, height = 95.dp) // Устанавливаем размер
+                .padding(end = 30.dp)
+        ) {
+            items(400)
+
+            {
+                Column(
+                    modifier = Modifier.width(35.dp)
+                ) {
+                    Text(
+                        text = "26 Dec",
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontSize = 12.sp
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+                    RelayVector(
+                        vector = painterResource(R.drawable.drizzle),
+                        modifier = Modifier
+                            .tappable(onTap = {})
+                            .requiredWidth(24.dp)
+                            .requiredHeight(24.dp)
+                    )
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Row {
+                        RelayVector(
+                            vector = painterResource(R.drawable.home_up_array),
+                            modifier = Modifier
+                                .tappable(onTap = {})
+                                .requiredWidth(10.dp)
+                                .requiredHeight(15.dp)
+                        )
+                        Text(
+                            text = "26°C",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontSize = 10.sp
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(10.dp))
+                    Row {
+
+                        RelayVector(
+                            vector = painterResource(R.drawable.home_down_array),
+                            modifier = Modifier
+                                .tappable(onTap = {})
+                                .requiredWidth(10.dp)
+                                .requiredHeight(15.dp)
+                        )
+                        Text(
+                            text = "26°C",
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontSize = 10.sp
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.width(20.dp))
+            }
+
         }
     }
 }
-

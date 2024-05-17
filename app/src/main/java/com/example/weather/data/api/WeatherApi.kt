@@ -27,7 +27,14 @@ class WeatherApi {
             }
         }
     }
-
+// https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/
+// Moscow
+// ?
+// unitGroup=metric
+// &
+// key=ZH63FRCTTRJMN5X5285JXWY2G
+// &
+// contentType=json
     suspend fun doKtorRequest(): WeatherCity {
         val client = HttpClient {
             install(ContentNegotiation) {

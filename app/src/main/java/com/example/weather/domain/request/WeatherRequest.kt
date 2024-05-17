@@ -15,16 +15,13 @@ class WeatherApi {
     private val BASE_URL =
         "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
     private var LOCATION = "Moscow"
-    private val GROUP = "today?unitGroup=metric"
-    private var INCLUDE = "include=current"
+    private val GROUP = "unitGroup=metric"
     private val KEY = "key=ZH63FRCTTRJMN5X5285JXWY2G"
     private val CONTENT_TYPE = "contentType=json"
 // https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/
 // Moscow
-// /
-// today?unitGroup=metric
-// &
-// include=current
+// ?
+// unitGroup=metric
 // &
 // key=ZH63FRCTTRJMN5X5285JXWY2G
 // &
@@ -36,7 +33,7 @@ class WeatherApi {
             }
         }
         return withContext(Dispatchers.IO) {
-            client.get("${BASE_URL}/${LOCATION}/${GROUP}&${INCLUDE}&${KEY}&${CONTENT_TYPE}")
+            client.get("${BASE_URL}${LOCATION}?${GROUP}&${KEY}&${CONTENT_TYPE}")
                 .body<WeatherCity>()
         }
     }

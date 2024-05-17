@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.weather"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -64,16 +64,14 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics-gradle:2.7.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
     implementation("com.google.guava:guava:27.0.1-android") // Keep only guava dependency
-    implementation("io.ktor:ktor-server:2.3.9")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9")
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.10")
+    implementation("io.ktor:ktor-serialization-gson:2.3.10")
+    implementation("io.ktor:ktor-client:2.3.10")
+    implementation("io.ktor:ktor-client-android:2.3.10")
+
     // Room dependencies
 
 
     // Ktor dependencies
-    implementation("io.ktor:ktor-client-core:2.3.9")
-    implementation("io.ktor:ktor-client-android:2.3.9")
-    implementation("io.ktor:ktor-client-json:2.3.9")
-    implementation("io.ktor:ktor-serialization:2.3.9")
-    testImplementation("io.ktor:ktor-client-mock-jvm:1.6.1")
     testImplementation("junit:junit:4.12")
 }

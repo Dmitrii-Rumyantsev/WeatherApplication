@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class CurrentConditions(
     @SerialName("datetime")
-    val dateTime: String,
+    val datetime: String,
     @SerialName("temp")
     val temp: Double,
     @SerialName("humidity")

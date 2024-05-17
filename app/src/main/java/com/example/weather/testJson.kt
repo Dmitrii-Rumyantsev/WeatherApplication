@@ -144,8 +144,8 @@ fun main(){
 
     // Теперь у вас есть объект weatherCity, содержащий все данные из JSON
     // Вы можете получить доступ к полям, например:
-    println("Город: ${weatherCity.city}")
-    println("Текущее время: ${weatherCity.currentConditions.dateTime}")
+    println("Город: ${weatherCity.address}")
+    println("Текущее время: ${weatherCity.currentConditions.datetime}")
     println("Максимальная температура на сегодня: ${weatherCity.days.first().tempmax}")
 
 }

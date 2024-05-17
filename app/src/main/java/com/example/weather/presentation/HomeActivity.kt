@@ -3,50 +3,49 @@ package com.example.weather.presentation
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
-import androidx.core.content.ContextCompat.startActivity
 import com.example.weather.R
-import com.example.weather.domain.WeatherViewModel
+import com.example.weather.data.WeatherCity
+import com.example.weather.domain.request.WeatherApi
 import com.example.weather.home.Home
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 class HomeActivity:ComponentActivity() {
-    private val viewModel : WeatherViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            HomeContent(viewModel, onClickMapping = {
-                val intent = Intent(this@HomeActivity, LocationsActivity::class.java)
-                startActivity(intent)
-            }, onClickSettings = {
-                val intent = Intent(this@HomeActivity, DetailsActivity::class.java)
-                startActivity(intent)
-            })
+        Log.d("start","start Activity")
+        val weatherApi = WeatherApi()
+        GlobalScope.launch(Dispatchers.Main) {
+            val weather = weatherApi.doKtorRequest()
+            Log.d("Weather", weather.toString())
+            setContent {
+                HomeContent(weather)
+            }
         }
+
     }
 }
-
 @Composable
-fun HomeContent(viewModel: WeatherViewModel,
-                onClickMapping: () -> Unit,
-                onClickSettings: () -> Unit){
+fun HomeContent( weather : WeatherCity){
     Home(
-        onClickMapping = onClickMapping,
-        onClickSettings = onClickSettings,
-        locationNow = stringResource(id = R.string.currentLocation),
+        locationNow = weather.address,
         currentLocation = stringResource(id = R.string.currentLocation),
         inSync = stringResource(id = R.string.inSync),
-        dateNow = stringResource(id = R.string.dateNow),
-        tempMax = stringResource(id = R.string.tempMax),
-        tempMin = stringResource(id = R.string.tempMin),
+        dateNow = LocalDate.now().toString(),
+        tempMax = weather.days.get(0).tempmax.toString(),
+        tempMin = weather.days.get(0).tempmin.toString(),
         typeWeather = stringResource(id = R.string.typeWeather),
-        sunsetTime = stringResource(id = R.string.sunsetTime),
-        tempNow = AnnotatedString(stringResource(id = R.string.tempNow)),
-        sunriseTime = stringResource(id = R.string.sunriseTime)
+        sunsetTime = weather.currentConditions.sunset,
+        tempNow = AnnotatedString(weather.days.get(0).temp.toString()),
+        sunriseTime = weather.currentConditions.sunrise
     )
 //    var weather by remember { mutableStateOf<WeatherCity?>(null) }
 //

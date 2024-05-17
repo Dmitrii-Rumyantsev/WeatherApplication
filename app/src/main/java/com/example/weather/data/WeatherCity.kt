@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class WeatherCity(
     @SerialName("address")
-    val city: String,
+    val address: String,
     @SerialName("currentConditions")
     val currentConditions: CurrentConditions,
     val days: List<Day>

@@ -1,8 +1,11 @@
 package com.example.weather.presentation
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,49 +20,94 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.consumePositionChange
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.weather.R
 import com.example.weather.data.Day
 import com.example.weather.data.WeatherCity
-import com.example.weather.details.Details
 import com.example.weather.ui.theme.WeatherTheme
 
-class DetailsActivity:ComponentActivity() {
+class DetailsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val intent = intent
         val weather: WeatherCity? = intent.getParcelableExtra("Weather")
-        setContent{
+        setContent {
             WeatherTheme {
-                DetailsContent(weather!!)
+                DetailsContent(weather!!,
+                    onClickForecast = {navigateToForecats()},
+                    onClickHome = {navigateToHome()},
+                    onClickSettings = { navigateToSettings() },
+                    onClickMapping = { navigateToLocation() })
 
             }
         }
+    }
+
+    private fun navigateToHome() {
+        val intent = Intent(this, HomeActivity::class.java)
+        Log.d("Info Activity ", "Start Activity to Home")
+        startActivity(intent)
+    }
+    private fun navigateToForecats() {
+        val intent = Intent(this, ForecastActivity::class.java)
+        Log.d("Info Activity ", "Start Activity to Forecast")
+        startActivity(intent)
+    }
+
+    private fun navigateToLocation() {
+        val intent = Intent(this, LocationsActivity::class.java)
+        Log.d("Info Activity ", "Start Activity to Location")
+        startActivity(intent)
+    }
+
+    private fun navigateToSettings() {
+        val intent = Intent(this, SettingsActivity::class.java)
+        Log.d("Info Activity ", "Start Activity to Settings")
+        startActivity(intent)
     }
 }
 
 @Composable
 fun DetailsContent(
-    weatherCity: WeatherCity
-){
+    weatherCity: WeatherCity,
+    onClickForecast: () -> Unit = {},
+    onClickHome: () -> Unit = {},
+    onClickSettings: () -> Unit = {},
+    onClickMapping: () -> Unit = {}
+) {
     WeatherTheme {
         Surface(modifier = Modifier.fillMaxSize()) {
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize()
+                    .pointerInput(Unit) {
+                    detectHorizontalDragGestures { change, dragAmount ->
+                        when {
+                            dragAmount > 0 -> onClickForecast() // Swiped to the right
+                            dragAmount < 0 -> onClickHome() // Swiped to the left
+                        }
+                        change.consumePositionChange()
+                    }
+                },
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                HomeContentTop(address = weatherCity.address)
+                HomeContentTop(
+                    address = weatherCity.address,
+                    onClickSettings, onClickMapping
+                )
                 Spacer(modifier = Modifier.height(50.dp))
-                Row(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 30.dp)) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 30.dp)
+                ) {
                     Text(
                         text = stringResource(id = R.string.details),
-                        style = MaterialTheme.typography.bodyLarge)
+                        style = MaterialTheme.typography.bodyLarge
+                    )
                 }
                 Spacer(modifier = Modifier.height(30.dp))
                 DetailsScore(weatherCity.days.first())
@@ -71,7 +119,7 @@ fun DetailsContent(
 
 @Composable
 fun DetailsScore(
-    day : Day
+    day: Day
 ) {
     Column(
         modifier = Modifier

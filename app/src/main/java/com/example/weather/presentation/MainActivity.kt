@@ -1,5 +1,6 @@
 package com.example.weather.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,8 +13,24 @@ import com.example.weather.splash.Splash
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        val db = MainDataBase.getDataBase(this)
+//        var user: User? = null
+//        GlobalScope.launch(Dispatchers.IO) {
+//            user = db.getUserDao().getUser()
+//        }
+//        if (user == null) {
+//            db.getUserDao().insertUser(
+//                User(
+//                    1, "Moscow",
+//                    false, "3"
+//                )
+//            )
+//        }
         setContent {
             MyComposableContent()
+            Thread.sleep(1000L)
+            val intent = Intent(this,HomeActivity::class.java)
+            startActivity(intent)
         }
     }
 }
@@ -22,7 +39,7 @@ class MainActivity : ComponentActivity() {
 fun MyComposableContent() {
     Splash(
         backgourndColor = Color.White,
-        onSplashTapped = { /* Действия при нажатии на экран */ },
+        onSplashTapped = { },
         producedBy = "A minimal weather app",
         weatherTextContent = stringResource(id = R.string.Weather)
     )

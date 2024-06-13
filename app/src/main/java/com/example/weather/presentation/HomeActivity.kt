@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,39 +27,60 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.consumePositionChange
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weather.R
+import com.example.weather.data.MainDataBase
 import com.example.weather.data.WeatherCity
+import com.example.weather.data.entity.User
 import com.example.weather.domain.request.WeatherApi
 import com.example.weather.ui.theme.WeatherTheme
 import com.google.relay.compose.RelayVector
 import com.google.relay.compose.RowScopeInstanceImpl.align
-import com.google.relay.compose.tappable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("start", "start Activity")
+
         val weatherApi = WeatherApi()
+        val db = MainDataBase.getDataBase(this)
+
         GlobalScope.launch(Dispatchers.Main) {
-            val weather = weatherApi.doKtorRequest()
+            val user = withContext(Dispatchers.IO) {
+                var user = db.getUserDao().getUser()
+                if (user == null) {
+                    user = User(1, "Moscow", true)
+                    db.getUserDao().insertUser(user)
+                }
+                user
+            }
+
+            Log.d("User toString", user.toString())
+
+            val weather = weatherApi.doKtorRequest(user.location_now)
             Log.d("Weather", weather.toString())
+
             setContent {
                 WeatherTheme {
-                    HomeMain(weather,onClickDetails = { navigateToDetails(weather) },
-                        onClickMapping = { navigateToLocation()},
-                        onClickSettings = {navigateToSettings()})
+                    HomeMain(
+                        weather,
+                        onClickForecast = {navigateToForecats()},
+                        onClickDetails = { navigateToDetails(weather) },
+                        onClickMapping = { navigateToLocation() },
+                        onClickSettings = { navigateToSettings() }
+                    )
                 }
             }
         }
-
     }
 
     private fun navigateToDetails(weather: WeatherCity){
@@ -78,25 +99,41 @@ class HomeActivity : ComponentActivity() {
         Log.d("Info Activity ","Start Activity to Settings")
         startActivity(intent)
     }
+
+    private fun navigateToForecats() {
+        val intent = Intent(this, ForecastActivity::class.java)
+        Log.d("Info Activity ", "Start Activity to Forecast")
+        startActivity(intent)
+    }
 }
 
 @Composable
 fun HomeMain(
     weather: WeatherCity,
+    onClickForecast: () -> Unit = {},
     onClickSettings: () -> Unit = {},
     onClickMapping: () -> Unit = {},
     onClickDetails: () -> Unit
 ) {
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier.fillMaxSize()
-                .clickable{
-                    onClickDetails()
+            modifier = Modifier
+                .pointerInput(Unit){
+                    detectHorizontalDragGestures { change, dragAmount ->
+                        when {
+                            dragAmount > 0 -> onClickDetails() // Swiped to the right
+                        }
+                        change.consumePositionChange()
+                    }
+                }
+                .fillMaxSize()
+                .clickable {
+                           onClickForecast()
                 },
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            HomeContentTop(weather.address, onClickDetails,
+            HomeContentTop(weather.address, onClickSettings,
                 onClickMapping)
             Spacer(modifier = Modifier.height(50.dp))
             HomeContentMiddle(
@@ -147,7 +184,7 @@ fun HomeContentTop(
             RelayVector(
                 vector = painterResource(R.drawable.home_mapping),
                 modifier = Modifier
-                    .clickable{
+                    .clickable {
                         onClickMapping()
                     }
                     .requiredWidth(21.25.dp)
@@ -160,7 +197,7 @@ fun HomeContentTop(
             RelayVector(
                 vector = painterResource(R.drawable.home_settings),
                 modifier = Modifier
-                    .clickable{
+                    .clickable {
                         onClickSettings()
                     }
                     .requiredWidth(21.25.dp)

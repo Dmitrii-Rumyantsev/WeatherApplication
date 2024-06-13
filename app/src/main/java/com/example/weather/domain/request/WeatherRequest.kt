@@ -26,14 +26,14 @@ class WeatherApi {
 // key=ZH63FRCTTRJMN5X5285JXWY2G
 // &
 // contentType=json
-    suspend fun doKtorRequest(): WeatherCity {
+    suspend fun doKtorRequest(cityName:String): WeatherCity {
         val client = HttpClient(Android) {
             install(ContentNegotiation) {
                 gson()
             }
         }
         return withContext(Dispatchers.IO) {
-            client.get("${BASE_URL}${LOCATION}?${GROUP}&${KEY}&${CONTENT_TYPE}")
+            client.get("${BASE_URL}${cityName}?${GROUP}&${KEY}&${CONTENT_TYPE}")
                 .body<WeatherCity>()
         }
     }

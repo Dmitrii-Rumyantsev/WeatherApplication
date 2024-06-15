@@ -12,14 +12,14 @@ val LightTypography = Typography(
     bodyLarge = TextStyle(
         fontFamily = ubuntuCondensed,
         fontWeight = FontWeight.Normal,
-        fontSize = 18.sp,
+        fontSize = 20.sp,
         letterSpacing = 0.5.sp,
         color = TextBlack
     ),
     titleLarge = TextStyle(
         fontFamily = ubuntuCondensed,
         fontWeight = FontWeight.Normal,
-        fontSize = 10.sp,
+        fontSize = 15.sp,
         letterSpacing = 0.5.sp,
         color = TextGrey
     )
@@ -29,14 +29,14 @@ val DarkTypography = Typography(
     bodyLarge = TextStyle(
         fontFamily = ubuntuCondensed,
         fontWeight = FontWeight.Normal,
-        fontSize = 18.sp,
+        fontSize = 20.sp,
         letterSpacing = 0.5.sp,
         color = TextWhite
     ),
     titleLarge = TextStyle(
         fontFamily = ubuntuCondensed,
         fontWeight = FontWeight.Normal,
-        fontSize = 10.sp,
+        fontSize = 15.sp,
         letterSpacing = 0.5.sp,
         color = TextGrey
     )

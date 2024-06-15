@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -26,31 +29,59 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.pointer.consumePositionChange
-import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weather.R
+import com.example.weather.data.Day
+import com.example.weather.data.Hour
 import com.example.weather.data.WeatherCity
+import com.example.weather.domain.api.YandexRequest
+import com.example.weather.ui.theme.WeatherIcon
 import com.example.weather.ui.theme.WeatherTheme
-import com.google.relay.compose.RelayVector
-import com.google.relay.compose.tappable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 
 class ForecastActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("Activity", "Start Activity")
         val intent = intent
         val weather: WeatherCity? = intent.getParcelableExtra("Weather")
-        setContent {
-            WeatherTheme {
-                ForecastContent(weather!!,
-                    onClickSettings = {navigateToSettings()},
-                    onClickHome = {navigateToHome()},
-                    onClickDetails = { navigateToDetails(weather) },
-                    onClickMapping = { navigateToLocation() })
+        var isDarkTheme = Themes.isDarkTheme(this)
+
+        var cityName: String
+        GlobalScope.launch{
+            if (Locale.getDefault().language != "en") {
+                val yandexRequest = YandexRequest()
+                cityName = withContext(Dispatchers.IO) {
+                    yandexRequest.doTranslate(
+                        Locale.getDefault().language,
+                        weather?.address!!.split(" ")
+                    )
+                }
+            } else {
+                cityName = weather!!.address
+            }
+            setContent {
+                WeatherTheme(darkTheme = isDarkTheme) {
+                    ForecastContent(
+                        isDarkTheme,
+                        weather!!,
+                        cityName,
+                        onClickSettings = { navigateToSettings() },
+                        onClickHome = { navigateToHome() },
+                        onClickDetails = { navigateToDetails(weather) },
+                        onClickMapping = { navigateToLocation() })
+                }
             }
         }
     }
@@ -81,50 +112,54 @@ class ForecastActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ForecastContent(
+    isDarkTheme: Boolean,
     weather: WeatherCity,
+    cityName: String,
     onClickHome: () -> Unit = {},
     onClickSettings: () -> Unit = {},
     onClickMapping: () -> Unit = {},
     onClickDetails: () -> Unit
 ) {
-    WeatherTheme {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .pointerInput(Unit) {
-                        detectHorizontalDragGestures { change, dragAmount ->
-                            when {
-                                dragAmount < 0 -> onClickDetails() // Swiped to the left
-                            }
-                            change.consumePositionChange()
-                        }
-                    }
-                    .clickable {
-                        onClickHome()
+    Surface(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .combinedClickable(
+                    onClick = {
+                        onClickDetails()
                     },
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally
+                    onLongClick = {
+                        onClickHome()
+                    }
+                ),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ForecastContentTop(
+                address = cityName,
+                onClickSettings = onClickSettings,
+                onClickMapping = onClickMapping
+            )
+            Spacer(modifier = Modifier.height(50.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 30.dp)
             ) {
-                ForecastContentTop(address = weather.address,
-                    onClickSettings = onClickSettings,
-                    onClickMapping = onClickMapping)
-                Spacer(modifier = Modifier.height(50.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 30.dp)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.forecast),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
-                Spacer(modifier = Modifier.height(50.dp))
-                ForecastHourly()
+                Text(
+                    text = stringResource(id = R.string.forecast),
+                    style = MaterialTheme.typography.bodyLarge
+                )
             }
+            Spacer(modifier = Modifier.height(50.dp))
+            ForecastHourly(
+                isDarkTheme,
+                weather.days.first().hours,
+                weather.days
+            )
         }
     }
 }
@@ -156,8 +191,9 @@ fun ForecastContentTop(
         Column(
             modifier = Modifier.padding(start = 192.dp)
         ) {
-            RelayVector(
-                vector = painterResource(R.drawable.home_mapping),
+            Image(
+                painter = painterResource(R.drawable.mapping),
+                contentDescription = "Mapping Icon",
                 modifier = Modifier
                     .clickable {
                         onClickMapping()
@@ -169,8 +205,9 @@ fun ForecastContentTop(
         Column(
             modifier = Modifier.padding(start = 19.dp)
         ) {
-            RelayVector(
-                vector = painterResource(R.drawable.home_settings),
+            Image(
+                painter = painterResource(R.drawable.settings),
+                contentDescription = "Settings Icon",
                 modifier = Modifier
                     .clickable {
                         onClickSettings()
@@ -181,8 +218,13 @@ fun ForecastContentTop(
         }
     }
 }
+
 @Composable
-fun ForecastHourly() {
+fun ForecastHourly(
+    isDarkTheme: Boolean,
+    hours: List<Hour>,
+    days: List<Day>
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -200,24 +242,23 @@ fun ForecastHourly() {
                 .size(width = 315.dp, height = 48.dp) // Устанавливаем размер
                 .padding(end = 30.dp)
         ) {
-            items(400)
-
-            {
+            items(hours.size) { index ->
+                val hour = hours[index]
                 Column(
                     modifier = Modifier.width(28.dp)
                 ) {
                     Text(
-                        text = "11:00",
+                        text = hour.datetime.toString().substring(0, 5),
                         style = MaterialTheme.typography.bodyLarge,
                         fontSize = 12.sp
                     )
                     Spacer(modifier = Modifier.height(10.dp))
-                    RelayVector(
-                        vector = painterResource(R.drawable.drizzle),
+                    WeatherIcon(
+                        iconName = hour.icon,
                         modifier = Modifier
-                            .tappable(onTap = {})
                             .requiredWidth(24.dp)
-                            .requiredHeight(24.dp)
+                            .requiredHeight(24.dp),
+                        isDarkTheme
                     )
                 }
                 Spacer(modifier = Modifier.width(20.dp))
@@ -234,60 +275,67 @@ fun ForecastHourly() {
         LazyRow(
             modifier = Modifier
                 .fillMaxWidth()
-                .size(width = 315.dp, height = 95.dp) // Устанавливаем размер
+                .size(width = 315.dp, height = 95.dp)
                 .padding(end = 30.dp)
         ) {
-            items(400)
-
-            {
+            items(days.size) { index ->
+                val day = days[index]
+                val parsedDate = LocalDate.parse(day.datetime, DateTimeFormatter.ISO_LOCAL_DATE)
                 Column(
                     modifier = Modifier.width(35.dp)
                 ) {
                     Text(
-                        text = "26 Dec",
+                        text = "${day.datetime.substring(8)} ${
+                            parsedDate.month.toString().substring(0, 3)
+                        }",
                         style = MaterialTheme.typography.bodyLarge,
                         fontSize = 12.sp
                     )
                     Spacer(modifier = Modifier.height(10.dp))
-                    RelayVector(
-                        vector = painterResource(R.drawable.drizzle),
+                    Box(
                         modifier = Modifier
-                            .tappable(onTap = {})
                             .requiredWidth(24.dp)
                             .requiredHeight(24.dp)
-                    )
+                            .clipToBounds() // This ensures the image stays within the box
+                    ) {
+                        WeatherIcon(
+                            iconName = day.icon,
+                            modifier = Modifier.fillMaxSize(),
+                            isDarkTheme
+                        )
+                    }
                     Spacer(modifier = Modifier.height(10.dp))
                     Row {
-                        RelayVector(
-                            vector = painterResource(R.drawable.home_up_array),
+                        Image(
+                            painter = painterResource(R.drawable.up_arrow),
+                            contentDescription = "Up Arrow",
                             modifier = Modifier
-                                .tappable(onTap = {})
                                 .requiredWidth(10.dp)
                                 .requiredHeight(15.dp)
                         )
                         Text(
-                            text = "26°C",
+                            text = "${day.tempmax.toInt()}°C",
                             style = MaterialTheme.typography.bodyLarge,
                             fontSize = 10.sp
                         )
                     }
                     Spacer(modifier = Modifier.height(10.dp))
                     Row {
-
-                        RelayVector(
-                            vector = painterResource(R.drawable.home_down_array),
+                        Image(
+                            painter = painterResource(R.drawable.down_arrow),
+                            contentDescription = "Down Arrow",
                             modifier = Modifier
-                                .tappable(onTap = {})
                                 .requiredWidth(10.dp)
                                 .requiredHeight(15.dp)
                         )
                         Text(
-                            text = "26°C",
+                            text = "${day.tempmin.toInt()}°C",
                             style = MaterialTheme.typography.bodyLarge,
                             fontSize = 10.sp
                         )
                     }
                 }
+
                 Spacer(modifier = Modifier.width(20.dp))
             }
 

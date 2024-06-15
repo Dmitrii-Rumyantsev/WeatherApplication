@@ -27,7 +27,7 @@ data class Day(
     @SerialName("sunset")
     val sunset: String,
     @SerialName("precip")
-    val precip: String,
+    val precip: Double,
     @SerialName("windgust")
     val windgust: String,
     @SerialName("visibility")
@@ -35,6 +35,7 @@ data class Day(
     @SerialName("uvindex")
     val uvindex: String,
     @SerialName("pressure")
-    val pressure: String
+    val pressure: String,
+    val hours: List<Hour>
 ):Parcelable {
 }

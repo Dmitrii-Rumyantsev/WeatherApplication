@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,21 +29,43 @@ import androidx.compose.ui.unit.dp
 import com.example.weather.R
 import com.example.weather.data.Day
 import com.example.weather.data.WeatherCity
+import com.example.weather.domain.api.YandexRequest
 import com.example.weather.ui.theme.WeatherTheme
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.util.Locale
 
 class DetailsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val intent = intent
         val weather: WeatherCity? = intent.getParcelableExtra("Weather")
-        setContent {
-            WeatherTheme {
-                DetailsContent(weather!!,
-                    onClickForecast = {navigateToForecats()},
-                    onClickHome = {navigateToHome()},
-                    onClickSettings = { navigateToSettings() },
-                    onClickMapping = { navigateToLocation() })
+        var isDarkTheme = Themes.isDarkTheme(this)
+        var cityName: String
+        GlobalScope.launch {
+            if (Locale.getDefault().language != "en") {
+                val yandexRequest = YandexRequest()
+                cityName = withContext(Dispatchers.IO) {
+                    yandexRequest.doTranslate(
+                        Locale.getDefault().language,
+                        weather?.address!!.split(" ")
+                    )
+                }
+            } else {
+                cityName = weather!!.address
+            }
+            setContent {
+                WeatherTheme(darkTheme = isDarkTheme) {
+                    DetailsContent(weather!!,
+                        cityName,
+                        onClickForecast = { navigateToForecats(weather) },
+                        onClickHome = { navigateToHome() },
+                        onClickSettings = { navigateToSettings() },
+                        onClickMapping = { navigateToLocation() })
 
+                }
             }
         }
     }
@@ -51,8 +75,10 @@ class DetailsActivity : ComponentActivity() {
         Log.d("Info Activity ", "Start Activity to Home")
         startActivity(intent)
     }
-    private fun navigateToForecats() {
+
+    private fun navigateToForecats(weather: WeatherCity) {
         val intent = Intent(this, ForecastActivity::class.java)
+        intent.putExtra("Weather", weather)
         Log.d("Info Activity ", "Start Activity to Forecast")
         startActivity(intent)
     }
@@ -70,19 +96,27 @@ class DetailsActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun DetailsContent(
     weatherCity: WeatherCity,
+    cityName: String,
     onClickForecast: () -> Unit = {},
     onClickHome: () -> Unit = {},
     onClickSettings: () -> Unit = {},
     onClickMapping: () -> Unit = {}
 ) {
-    WeatherTheme {
-        Surface(modifier = Modifier.fillMaxSize()) {
-            Column(
-                modifier = Modifier.fillMaxSize()
-                    .pointerInput(Unit) {
+    Surface(modifier = Modifier
+        .fillMaxSize()
+        .combinedClickable(
+            onClick = { onClickForecast() },
+            onLongClick = { onClickHome() }
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .pointerInput(Unit) {
                     detectHorizontalDragGestures { change, dragAmount ->
                         when {
                             dragAmount > 0 -> onClickForecast() // Swiped to the right
@@ -91,27 +125,26 @@ fun DetailsContent(
                         change.consumePositionChange()
                     }
                 },
-                verticalArrangement = Arrangement.Top,
-                horizontalAlignment = Alignment.CenterHorizontally
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            HomeContentTop(
+                address = cityName,
+                onClickSettings, onClickMapping
+            )
+            Spacer(modifier = Modifier.height(50.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 30.dp)
             ) {
-                HomeContentTop(
-                    address = weatherCity.address,
-                    onClickSettings, onClickMapping
+                Text(
+                    text = stringResource(id = R.string.details),
+                    style = MaterialTheme.typography.bodyLarge
                 )
-                Spacer(modifier = Modifier.height(50.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 30.dp)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.details),
-                        style = MaterialTheme.typography.bodyLarge
-                    )
-                }
-                Spacer(modifier = Modifier.height(30.dp))
-                DetailsScore(weatherCity.days.first())
             }
+            Spacer(modifier = Modifier.height(30.dp))
+            DetailsScore(weatherCity.days.first())
         }
     }
 }

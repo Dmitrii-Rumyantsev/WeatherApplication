@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.cli.js.internal.main
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -38,6 +40,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -59,6 +62,8 @@ android {
 
 dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.constraintlayout.compose.android)
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
@@ -78,6 +83,10 @@ dependencies {
     implementation("io.ktor:ktor-serialization-gson:2.3.10")
     implementation("io.ktor:ktor-client:2.3.10")
     implementation("io.ktor:ktor-client-android:2.3.10")
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.19.0")
+
+
+    implementation("androidx.compose.foundation:foundation:1.4.3")
 
     // Room dependencies
 

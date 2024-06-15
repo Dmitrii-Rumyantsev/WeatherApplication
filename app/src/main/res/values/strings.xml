@@ -26,4 +26,9 @@
     <string name="humidityScore" translatable="false">%</string>
     <string name="visibilityScore">km</string>
     <string name="pressureScore">hPa</string>
+    <string name="themeName">Theme</string>
+    <string name="darkName">Dark Theme</string>
+    <string name="lightTheme">Light Theme</string>
+    <string name="joinDark">Join the Dark Side!</string>
+    <string name="joinLight">Let There be Light!</string>
 </resources>

@@ -23,4 +23,9 @@
     <string name="seWindScore">км/ч</string>
     <string name="visibilityScore">км</string>
     <string name="pressureScore">hPa</string>
+    <string name="themeName">Тема</string>
+    <string name="darkName">Черная тема</string>
+    <string name="lightTheme">Светлая тема</string>
+    <string name="joinDark">Присоединяйтесь к Темной стороне!</string>
+    <string name="joinLight">Да будет свет!</string>
 </resources>

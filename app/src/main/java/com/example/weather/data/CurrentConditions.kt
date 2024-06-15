@@ -16,8 +16,6 @@ data class CurrentConditions(
     val humidity: Double,
     @SerialName("precip")
     val precip: Double,
-    @SerialName("preciptype")
-    val preciptype: String?,
     @SerialName("sunrise")
     val sunrise: String,
     @SerialName("sunset")

@@ -1,17 +1,19 @@
-package com.example.weather.data
+package com.example.weather.domain
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.weather.data.dao.UserDao
+import com.example.weather.domain.dao.UserDao
+import com.example.weather.domain.dao.WeatherDao
 import com.example.weather.data.entity.User
+import com.example.weather.data.entity.Weather
 
-@Database(entities = [User::class/*,Weather::class*/], version = 1)
+@Database(entities = [User::class, Weather::class], version = 1)
 abstract class MainDataBase  : RoomDatabase(){
-    abstract fun getUserDao():UserDao
+    abstract fun getUserDao(): UserDao
 
-//    abstract fun getWeatherDao():WeatherDao
+    abstract fun getWeatherDao(): WeatherDao
 
     companion object {
         @Volatile
